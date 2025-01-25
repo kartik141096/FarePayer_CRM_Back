@@ -23,7 +23,7 @@ class CreateHotelMasterTable extends Migration
             $table->string('contact_person')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->string('status')->default('active');
+            $table->string('status')->default('1');
             $table->string('website')->nullable();
             $table->timestamps(); // Includes created_at and updated_at
             $table->softDeletes(); // Adds deleted_at column

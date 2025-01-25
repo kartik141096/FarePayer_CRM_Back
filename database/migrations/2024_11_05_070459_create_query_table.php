@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('mobile');
             $table->string('email');
-            $table->string('destination');
+            $table->string('destination_id');
+            $table->string('destination_type');
             $table->string('adult_count', 5);
             $table->string('child_count', 5);
             $table->string('infant_count', 5);

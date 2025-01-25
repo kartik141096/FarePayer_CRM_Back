@@ -14,7 +14,7 @@ class Query extends Model
 
     // Specify the fields that can be mass assignable
     protected $fillable = [
-        'title', 'name', 'mobile', 'email', 'destination',
+        'title', 'name', 'mobile', 'email', 'destinations',
         'adult_count', 'child_count', 'infant_count',
         'from_date', 'to_date', 'source', 'status',
         'priority', 'assign_to', 'created_on', 'updated_on'
@@ -27,4 +27,9 @@ class Query extends Model
     protected $dates = [
         'from_date', 'to_date', 'created_on', 'updated_on'
     ];
+
+    public function queryDestinations()
+    {
+        return $this->hasMany(QueryDestination::class, 'query_id', 'id');
+    }
 }

@@ -18,7 +18,6 @@ class Itinerary extends Model
         'start_date',
         'end_date',
         'type',
-        'destinations', 
         'adult_count',
         'child_count',
         'infant_count',
@@ -27,8 +26,18 @@ class Itinerary extends Model
 
     // Cast attributes to desired types
     protected $casts = [
-        'destinations' => 'array',  // Auto-convert JSON to array
         'start_date' => 'date',
         'end_date' => 'date',
     ];
+
+    public function destinations()
+    {
+        return $this->hasMany(ItineraryDestination::class, 'itinerary_id');
+    }
+
+    public function itineraryMasterEntries()
+    {
+        return $this->hasMany(ItineraryMaster::class, 'itinerary_id');
+    }
+
 }

@@ -23,9 +23,9 @@ class CreateHotelSlaveTable extends Migration
             $table->foreignId('room_type')
                 ->constrained('room_type') // References the 'room_type' table
                 ->onDelete('cascade'); // Deletes related rows on room_type deletion
-            $table->foreignId('meal_plane')
-                ->constrained('meal_plane') // References the 'meal_plane' table
-                ->onDelete('cascade'); // Deletes related rows on meal_plane deletion
+            $table->foreignId('meal_plan')
+                ->constrained('meal_plan') // References the 'meal_plan' table
+                ->onDelete('cascade'); // Deletes related rows on meal_plan deletion
             $table->decimal('single_price', 10, 2)->nullable(); // Price for single occupancy
             $table->decimal('double_price', 10, 2)->nullable(); // Price for double occupancy
             $table->decimal('triple_price', 10, 2)->nullable(); // Price for triple occupancy

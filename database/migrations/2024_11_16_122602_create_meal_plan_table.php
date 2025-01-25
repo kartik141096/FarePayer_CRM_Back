@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMealPlaneTable extends Migration
+class CreateMealPlanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateMealPlaneTable extends Migration
      */
     public function up()
     {
-        Schema::create('meal_plane', function (Blueprint $table) {
+        Schema::create('meal_plan', function (Blueprint $table) {
             $table->id(); // Primary key
             $table->string('name'); // Meal plan name (e.g., Breakfast, Half Board)
-            $table->string('status')->default('active'); // Status of the meal plan (active/inactive)
+            $table->string('status')->default('true'); // Status of the meal plan (active/inactive)
             $table->timestamps(); // Includes created_at and updated_at
         });
     }
@@ -28,6 +28,6 @@ class CreateMealPlaneTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('meal_plane');
+        Schema::dropIfExists('meal_plan');
     }
 }

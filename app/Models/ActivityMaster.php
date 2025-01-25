@@ -6,40 +6,34 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class HotelMaster extends Model
+class ActivityMaster extends Model
 {
     use HasFactory;
 
-    protected $table = 'hotel_master';
+    // Table name (optional if it follows naming convention)
+    protected $table = 'activity_master';
 
-    protected $primaryKey = 'id';
-
-    public $timestamps = true;
-
+    // Fillable fields for mass assignment
     protected $fillable = [
         'name',
-        'category',
         'destination_id',
         'destination_type',
         'details',
         'img',
-        'contact_person',
-        'email',
-        'phone',
-        'status',
-        'website',
+        'status'
     ];
 
-    public function hotelSlaves()
+    // Define relationship with ActivitySlave
+    public function slaves()
     {
-        return $this->hasMany(HotelSlave::class, 'hotel_master_id');
+        return $this->hasMany(ActivitySlave::class, 'activity_master_id');
     }
 
-    public static function getHotelsByDestinations(array $destinations)
-    {
-        // Initialize the query for HotelMaster
-        $query = self::where('status', 1)->where(function ($query) use ($destinations) {
     
+    public static function getActivitiesByDestinations(array $destinations)
+    {
+
+        $query = self::where('status', 1)->where(function ($query) use ($destinations) {
             foreach ($destinations as $destination) {
                 $type = $destination['type'];
                 $id = $destination['destination_id'];
@@ -79,7 +73,6 @@ class HotelMaster extends Model
         // Execute and return the query results
         return $query->get();
     }
-    
 
     public function getDestinationNameAttribute()
     {
@@ -94,18 +87,4 @@ class HotelMaster extends Model
             ->where('id', $destinationId)
             ->value('name');
     }
-
-    // public static function getHotelsByDestinations(array $destinations)
-    // {
-    //     $query = HotelMaster::query();
-
-    //     foreach ($destinations as $destination) {
-    //         $query->orWhere(function ($q) use ($destination) {
-    //             $q->where('destination_id', $destination['destination_id'])
-    //               ->where('destination_type', $destination['type']);
-    //         });
-    //     }
-
-    //     return $query->get();
-    // }
 }
